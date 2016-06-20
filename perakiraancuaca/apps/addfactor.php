@@ -13,10 +13,12 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+	
+	 <link href="../bower_components/alertify/themes/alertify.core.css" rel="stylesheet">
+	 <link href="../bower_components/alertify/themes/alertify.default.css" rel="stylesheet">
+	 <link href="../bower_components/alertify/themes/alertify.bootstrap.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 	<link href="../dist/css/bootstrapValidator.min.css" rel="stylesheet">
@@ -65,7 +67,7 @@
 									  </div>
 									  <div class="form-group">
 										<label class="col-sm-4 control-label">Suhu</label>
-										<div class="col-sm-6">
+										<div class="col-sm-8">
 										  <div class="input-group">
 											  <div class="input-group-addon">Max.</div>
 											  <input type="text" class="form-control" name="suhu_max" maxlength="2" />
@@ -83,7 +85,7 @@
 									  <div class="form-group">
 										<label class="col-sm-4 control-label">Angin</label>
 										<div class="col-sm-8">
-										  <input maxlength="2" type="text" class="form-control" name="arah_angin"/>
+										  <input type="text" class="form-control" name="arah_angin"/>
 										</div>
 									  </div>
 									   <div class="form-group">
@@ -99,7 +101,7 @@
 									  </div>
 									  <div class="form-group">
 										<div class="col-sm-offset-4 col-sm-10">
-										  <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Simpan</button>
+										  <button id="btn-submit" type="submit" class="btn btn-success"><i class="fa fa-send"></i> Simpan</button>
 										</div>
 									  </div>
 									</form>
@@ -129,6 +131,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../dist/js/bootstrapValidator.min.js"></script>
+	<script src="../bower_components/alertify/lib/alertify.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
@@ -188,7 +191,13 @@
 						validators: {
 							notEmpty: {
 								message: 'Silahkan isi kelembapan'
-							}
+							},
+							numeric: {
+								message: 'Kelembapan salah',
+								
+								thousandsSeparator: '',
+								decimalSeparator: '.'
+							}	
 						}
 
 					},
@@ -218,36 +227,31 @@
 				
 				//formData.append('file','file);
 				var data = $form.serialize();
-				$('#kontak-frm input').attr("disabled", "disabled");
-				/*$.ajax({
+				$('#frm-cuaca input').attr("disabled", "disabled");
+				$.ajax({
 					type: 'POST',
 					url: $form.attr('action'),
 					data: data,
 					dataType: 'json',
 					success: function (data) {
 							data=parseInt(data);
-						if(data==3){
-							$('#captchagroup').addClass('has-error').find('input').val('');
-							alertify.error('Captcha Salah');
-						}else{
-							console.log('Gagal mengirim ke email');
-							$('#captchagroup').removeClass('has-error').find('input').val('');
-							//$('#kontak-frm').bootstrapValidator('resetForm',true);
-							alertify.success('Data berhasil dikirim');
+							if(data==1){
+								alertify.success('Data berhasil dikirim, bloon :p');
+							}else{
+								alertify.error('Data gagal dikirim!');
+							}
+							return false;
+						},
+						error: function (xhr,textStatus,errormessage) {
+							alertify.alert("Kesalahan! ","Error !!"+xhr.status+" "+textStatus+" "+"Tidak dapat mengirim data!");
+						},
+						complete: function () {
+							$('#frm-cuaca').bootstrapValidator('resetForm',true);
+							$('#btnsubmit').removeAttr('disabled');
+							$('#frm-cuaca input').removeAttr("disabled");
 						}
-						return false;
-					},
-					error: function (xhr,textStatus,errormessage) {
-						alertify.alert("Kesalahan! ","Error !!"+xhr.status+" "+textStatus+" "+"Tidak dapat mengirim data!");
-					},
-					complete: function () {
-						$('#kontak-frm').bootstrapValidator('resetForm',true);
-						$('#btnsubmit').removeAttr('disabled');
-						$('#kontak-frm input').removeAttr("disabled");
-						$('#captcha').attr('src','captcha.php');
-					}
-				});*/
-			});
+					});
+				});
 		});
 	</script>
 </body>
