@@ -17,12 +17,15 @@
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
+    <!-- Timeline CSS -->
+    <link href="../css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-	<link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -34,83 +37,48 @@
     <![endif]-->
 
 </head>
+
+<body>
 	<?php
 		require 'Model/config.php';
 		$query = 'select * from faktorcuaca';
 		$results = mysqli_query($connection,$query);
 		$rows='';
+		$arr_suhumax = array();
 		if($results){
 			$rows = mysqli_fetch_all($results,MYSQLI_ASSOC);
 		}
 	?>
-<body>
-
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <?php require 'layout/nav.php'; ?>
+        <?php require 'layout/nav.php';?>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Flot</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-sun-o fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>Learning Dataset</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Tampilkan</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-				<div class="col-lg-9 col-md-9">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="row">
-							 tunggu yg ini
-							 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-				 
-                
-            </div>
-            <!-- /.row -->
-           <div class="row">
-				<div class="col-lg-12">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            Grafik Dataset
+                            Line Chart Example
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-line-chart"></div>
+                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-		   </div>
+                <!-- /.col-lg-6 -->
+            </div>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
@@ -126,28 +94,53 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-	<!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
 
+    <!-- Flot Charts JavaScript -->
+    <script src="../bower_components/flot/excanvas.min.js"></script>
+    <script src="../bower_components/flot/jquery.flot.js"></script>
+    <script src="../bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="../bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="../bower_components/flot/jquery.flot.time.js"></script>
+    <script src="../bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+		
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 	<script type='text/javascript'>
-		$(function() {
-
-			Morris.Area({
-				element: 'morris-area-chart',
-				data: <?php print json_encode($rows)?>,
-				xkey: 'kota',
-				ykeys: ['suhu_min', 'suhu_max', 'kelembapan'],
-				labels: ['Suhu Min.', 'Suhu Max', 'Kelembapan'],
-				parseTime:false,
-				pointSize: 2,
-				hideHover: 'auto',
-				resize: true
-			});
-		});
-
+		$(document).ready(function(){
+			var options = {
+            series: {
+                lines: {
+                    show: true
+                },
+                points: {
+                    show: true
+                }
+            },
+            grid: {
+                hoverable: true //IMPORTANT! this is needed for tooltip to work
+            },
+            yaxis: {
+                min: -1.2,
+                max: 1.2
+            },
+            tooltip: true,
+            tooltipOpts: {
+                content: "'%s' of %x.1 is %y.4",
+                shifts: {
+                    x: -60,
+                    y: 25
+                }
+            }
+        };
+		$.plot($("#flot-line-chart"), [{
+                data: sin,
+                label: "sin(x)"
+            }, {
+                data: cos,
+                label: "cos(x)"
+            }],
+            options);
+	});
 	</script>
 </body>
 
