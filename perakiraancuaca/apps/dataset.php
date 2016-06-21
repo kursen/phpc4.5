@@ -112,6 +112,8 @@
 									  <div class="form-group">
 										<div class="col-sm-offset-4 col-sm-10">
 										  <button id="btn-submit" type="submit" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>
+										  
+										   <button id="btn-cancel" type="button" class="btn btn-danger"><i class="fa fa-repeat"></i> Batal</button>
 										</div>
 									  </div>
 									</form>
@@ -356,6 +358,11 @@
 							
 						}
 					});
+				});
+				
+				$('#btn-cancel').click(function(){
+					$('#frm-cuaca').bootstrapValidator('resetForm',true);
+					$('#panel-form').hide('slow');
 				});
     });
 	

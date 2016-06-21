@@ -102,6 +102,7 @@
 									  <div class="form-group">
 										<div class="col-sm-offset-4 col-sm-10">
 										  <button id="btn-submit" type="submit" class="btn btn-success"><i class="fa fa-send"></i> Simpan</button>
+										  
 										</div>
 									  </div>
 									</form>
