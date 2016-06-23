@@ -1,3 +1,4 @@
+<a href="formcuaca.php">Tambah</a>
 <?php
 //ini kan kerjaan jadi haru kau komit,coba kau cantikkan
 	//ini ambil koneksi dari file config.php yang di folder Model
@@ -38,7 +39,7 @@
 					<td>".$row['arah_angin']."</td>
 					<td>".$row['cuaca']."</td>
 					<td><a onclick='return confirm(\"Are you sure you want to delete this item?\");' href='hapus.php?id=".$row['Id']."'>
-					Hapus</a></td>
+					Hapus</a> <a href='edit.php?id=".$row['Id']."'> Edit</a></td>
 				</tr>";//tambahi kyk gitu
 				//itu kalo mau pake confirm,,perhatikan tanda ' atau ",,ngerti kan
 			$nomor+=1;
@@ -47,4 +48,5 @@
 	}else{
 		echo "Data Kosong";
 	}
+	
 ?>
