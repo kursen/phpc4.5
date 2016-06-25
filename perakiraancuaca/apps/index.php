@@ -84,12 +84,13 @@
 				<div class="col-lg-9 col-md-9">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="row">
-							 tunggu yg ini
-							 
-                            </div>
+						Perkiraan Cuaca
                         </div>
+						<div class="panel-body">
+							25 June 2016
+						</div>
                     </div>
+					
                 </div>
                 
 				 
