@@ -13,7 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	
+	<link rel='stylesheet' href='../bower_components/bootstrapdatetimepicker/bootstrap-datetimepicker.min.css' />
 	 <link href="../bower_components/alertify/themes/alertify.core.css" rel="stylesheet">
 	 <link href="../bower_components/alertify/themes/alertify.default.css" rel="stylesheet">
 	 <link href="../bower_components/alertify/themes/alertify.bootstrap.css" rel="stylesheet">
@@ -60,9 +60,12 @@
                                 <div class="col-lg-6">
                                     <form class="form-horizontal" method="post" action="Controller/savefactor.php" id="frm-cuaca">
 									  <div class="form-group">
-										<label class="col-sm-4 control-label">Kota</label>
+										<label class="col-sm-4 control-label">Tanggal</label>
 										<div class="col-sm-7">
-										  <input type="text" class="form-control" name="kota"/>
+											<div class="input-group">
+												<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+													<input id="dtpicker" type="text" class="form-control" name="tanggal"/>
+											</div>
 										</div>
 									  </div>
 									  <div class="form-group">
@@ -70,39 +73,39 @@
 										<div class="col-sm-8">
 										  <div class="input-group">
 											  <div class="input-group-addon">Max.</div>
-											  <input type="text" class="form-control" name="suhu_max" maxlength="2" />
+											  <input type="text" class="form-control" name="suhu_max" maxlength="5" />
 											   <div class="input-group-addon">Min.</div>
-											  <input  maxlength="2" type="text" class="form-control" name="suhu_min" />
+											  <input  maxlength="5" type="text" class="form-control" name="suhu_min" />
 										  </div>
 										</div>
 									  </div>
 									   <div class="form-group">
 										<label class="col-sm-4 control-label">Kelembapan</label>
 										<div class="col-sm-3">
-										  <input maxlength="2" type="text" class="form-control" name="kelembapan"/>
+										  <input maxlength="5" type="text" class="form-control" name="kelembapan"/>
 										</div>
 									  </div>
 									  <div class="form-group">
-										<label class="col-sm-4 control-label">Angin</label>
+										<label class="col-sm-4 control-label">Arah Angin</label>
 										<div class="col-sm-8">
 										  <input type="text" class="form-control" name="arah_angin"/>
 										</div>
 									  </div>
 									   <div class="form-group">
-										<label class="col-sm-4 control-label">Cuaca</label>
-										<div class="col-sm-8">
-										  <select name="cuaca" class="form-control">
-											<option value="">Pilih</option>
-											<option value="hujan">Hujan</option>
-											<option value="cerah">Cerah</option>
-											<option value="berawan">Berawan</option>
-										  </select>
+										<label class="col-sm-4 control-label">Kecepatan Angin</label>
+										<div class="col-sm-3">
+										  <input maxlength="5" type="text" class="form-control" name="kecepatan_angin"/>
 										</div>
 									  </div>
+									   <div class="form-group">
+										<label class="col-sm-4 control-label">Curah hujan</label>
+											<div class="col-sm-5">
+											  <input type="text" class="form-control" name="cuaca"/>
+											</div>
+										</div>
 									  <div class="form-group">
 										<div class="col-sm-offset-4 col-sm-10">
 										  <button id="btn-submit" type="submit" class="btn btn-success"><i class="fa fa-send"></i> Simpan</button>
-										  
 										</div>
 									  </div>
 									</form>
@@ -130,7 +133,11 @@
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
+	
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type='text/javascript' src='../bower_components/bootstrapdatetimepicker/moment.min.js'></script>
+	<script type="text/javascript" src="../bower_components/bootstrapdatetimepicker/moment-with-locales.min.js"></script>
+	<script type="text/javascript" src="../bower_components/bootstrapdatetimepicker/bootstrap-datetimepicker.min.js"></script>
 	<script src="../dist/js/bootstrapValidator.min.js"></script>
 	<script src="../bower_components/alertify/lib/alertify.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
@@ -142,6 +149,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('#dtpicker').datetimepicker({
+				format:'YYYY-MM-DD'
+			});
+			
 			$('#frm-cuaca').bootstrapValidator({
 				live: 'enabled',
 				message: 'This value is not Valid',
@@ -153,10 +164,10 @@
 				excluded:'disabled',
 				fields: {
 					
-					kota: {
+					tanggal: {
 						validators: {
 							notEmpty: {
-								message: 'Silahkan isi Kota'
+								message: 'Silahkan isi tanggal'
 							}
 							
 						}
@@ -169,7 +180,7 @@
 							 numeric: {
 								message: 'Suhu salah',
 								
-								thousandsSeparator: '',
+								thousandsSeparator: ',',
 								decimalSeparator: '.'
 							}	
 						}
@@ -182,7 +193,7 @@
 							 numeric: {
 								message: 'Suhu salah',
 								
-								thousandsSeparator: '',
+								thousandsSeparator: ',',
 								decimalSeparator: '.'
 							}	
 						}
@@ -196,7 +207,7 @@
 							numeric: {
 								message: 'Kelembapan salah',
 								
-								thousandsSeparator: '',
+								thousandsSeparator: ',',
 								decimalSeparator: '.'
 							}	
 						}
@@ -206,14 +217,39 @@
 						validators:{
 							notEmpty: {
 								message: 'Silahkan isi arah angin'
-							}
+							},
+							numeric: {
+								message: 'arah angin salah',
+								
+								thousandsSeparator: ',',
+								decimalSeparator: '.'
+							}	
+						}
+					},
+					kecepatan_angin:{
+						validators:{
+							notEmpty:{
+								message: 'Silahkan isi kecepatan angin'
+							},
+							numeric: {
+								message: 'kecepatan angin salah',
+								
+								thousandsSeparator: ',',
+								decimalSeparator: '.'
+							}	
 						}
 					},
 					cuaca:{
 						validators:{
 							notEmpty: {
-								message: 'Silahkan pilih cuaca'
-							}
+								message: 'Silahkan isi curah hujan'
+							},
+							numeric: {
+								message: 'Curah hujan salah',
+								
+								thousandsSeparator: ',',
+								decimalSeparator: '.'
+							}	
 						}
 					}
 				}

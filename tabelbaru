@@ -1,0 +1,54 @@
+/*
+MySQL Backup
+Source Server Version: 5.5.5
+Source Database: fc45
+Date: 6/29/2016 12:18:07
+*/
+
+
+-- ----------------------------
+--  Table structure for `faktor1`
+-- ----------------------------
+DROP TABLE IF EXISTS `faktor1`;
+CREATE TABLE `faktor1` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `cuaca` varchar(50) NOT NULL,
+  `suhu` int(11) NOT NULL,
+  `kelembapan` int(11) NOT NULL,
+  `angin` varchar(20) NOT NULL,
+  `bermain` varchar(10) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+--  Table structure for `faktorcuaca`
+-- ----------------------------
+DROP TABLE IF EXISTS `faktorcuaca`;
+CREATE TABLE `faktorcuaca` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `kota` varchar(50) NOT NULL,
+  `suhu_max` int(11) NOT NULL,
+  `suhu_min` int(11) NOT NULL,
+  `kelembapan` int(11) NOT NULL,
+  `arah_angin` varchar(50) NOT NULL,
+  `cuaca` varchar(20) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+--  Table structure for `trainingtable`
+-- ----------------------------
+DROP TABLE IF EXISTS `trainingtable`;
+CREATE TABLE `trainingtable` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` date NOT NULL,
+  `suhu_max` double(11,0) NOT NULL,
+  `suhu_min` double(11,0) NOT NULL,
+  `kelembapan` int(11) NOT NULL,
+  `arah_angin` varchar(5) NOT NULL,
+  `kecepatan_angin` double(11,0) NOT NULL,
+  `cuaca` double(20,0) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+

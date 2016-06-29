@@ -2,7 +2,7 @@
 require_once('../Model/config.php');
 if(isset($_POST['id'])){
 	$id=$_POST['id'];
-	$query="delete from faktorcuaca where Id=$id";
+	$query="delete from trainingtable where Id=$id";
 	$execute = mysqli_query($connection,$query);
 	if(!$execute){
 		print json_encode(0);
