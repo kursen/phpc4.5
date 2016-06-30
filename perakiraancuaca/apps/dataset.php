@@ -84,16 +84,16 @@
 										<div class="col-sm-8">
 										  <div class="input-group">
 											  <div class="input-group-addon">Max.</div>
-											  <input type="text" class="form-control" name="suhu_max" maxlength="2" id="shmax" />
+											  <input type="text" class="form-control" name="suhu_max" maxlength="5" id="shmax" />
 											   <div class="input-group-addon">Min.</div>
-											  <input  maxlength="2" type="text" class="form-control" name="suhu_min" id="shmin" />
+											  <input  maxlength="5" type="text" class="form-control" name="suhu_min" id="shmin" />
 										  </div>
 										</div>
 									  </div>
 									   <div class="form-group">
 										<label class="col-sm-4 control-label">Kelembapan</label>
 										<div class="col-sm-3">
-										  <input maxlength="2" type="text" class="form-control" name="kelembapan" id="lembap"/>
+										  <input maxlength="5" type="text" class="form-control" name="kelembapan" id="lembap"/>
 										</div>
 									  </div>
 									  <div class="form-group">
@@ -142,7 +142,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Kota</th>
+                                            <th>Tanggal</th>
                                             <th>Suhu Max.</th>
                                             <th>Suhu Min.</th>
                                             <th>Kelembapan</th>
@@ -198,7 +198,7 @@
     $(document).ready(function() {
 		$('#dtpicker').datetimepicker({
 				format:'YYYY-MM-DD'
-			});
+			});//ada kau ubah ini gak ada knpa 
 		
         var gentable = $('#dataTables-example').DataTable({
                 responsive: true,

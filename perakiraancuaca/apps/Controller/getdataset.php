@@ -11,7 +11,7 @@ while($arrdata = mysqli_fetch_array($execute)){
 	'kelembapan' => $arrdata[4],
 	'arah_angin' => $arrdata[5],
 	'kecepatan_angin' => $arrdata[6],
-	'cuaca' => $arrdata[6],
+	'cuaca' => $arrdata[7],
 	);
 	array_push($data,$getdata);
 }
