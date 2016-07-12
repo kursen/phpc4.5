@@ -45,6 +45,9 @@
                             <a href="addfactor.php"><i class="fa fa-edit fa-fw"></i> Faktor </a>
 							
                         </li>
+						<li>
+							<a href="#"><i class="fa fa-cloud-download fa-fw"></i> Load Faktor</a>
+						</li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Perkiraan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
