@@ -2,7 +2,7 @@
 $hostname = 'localhost';   // Hostname
 $dbname   = 'fc45';      // Nama Database
 $username = 'root';        // Username Database
-$password = ''; // Database password
+$password = 'root'; // Database password
 
 // Koneksi ke databse
 $connection=mysqli_connect($hostname, $username, $password);

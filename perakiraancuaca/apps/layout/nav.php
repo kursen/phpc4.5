@@ -52,7 +52,7 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Perkiraan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Panels and Wells</a>
+                                    <a href="calculate.php">Kalkulasi C45</a>
                                 </li>
                                
                             </ul>
