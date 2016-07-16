@@ -105,6 +105,70 @@
 								
 								print "<p/>"."Nilai Semua Entropy = ".$Eall;
 								
+								//hitung entropy suhu max.
+								$querySuhuMaxTidakHujan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca=0");
+								$datasetSuhuMaxTidakHujan = mysqli_fetch_assoc($querySuhuMaxTidakHujan);
+								$countSuhuMaxTidakHujan =$datasetSuhuMaxTidakHujan['total'];
+								
+								$querySuhuMaxHujanSangatRingan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 0.01 and 5");
+								$datasetSuhuMaxHujanSangatRingan = mysqli_fetch_assoc($querySuhuMaxHujanSangatRingan);
+								$countSuhuMaxHujanSangatRingan=$datasetSuhuMaxHujanSangatRingan['total'];
+								
+								$querySuhuMaxHujanRingan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 5.01 and 20");
+								$datasetSuhuMaxHujanRingan = mysqli_fetch_assoc($querySuhuMaxHujanRingan);
+								$countSuhuMaxHujanRingan = $datasetSuhuMaxHujanRingan['total'];
+								
+								$querySuhuMaxHujanSedang = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 20.1 and 50");
+								$datasetSuhuMaxHujanSedang = mysqli_fetch_assoc($querySuhuMaxHujanSedang);
+								$countSuhuMaxHujanSedang = $datasetSuhuMaxHujanSedang['total'];
+								
+								$querySuhuMaxHujanLebat = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 50.1 and 100");
+								$datasetSuhuMaxHujanLebat = mysqli_fetch_assoc($querySuhuMaxHujanLebat);
+								$countSuhuMaxHujanLebat = $datasetSuhuMaxHujanLebat['total'];
+								
+								//hitung entropy suhu min
+								$querySuhuMinTidakHujan = mysqli_query($connection,"select count(suhu_min) as total from trainingtable where cuaca=0");
+								$datasetSuhuMinTidakHujan = mysqli_fetch_assoc($querySuhuMinTidakHujan);
+								$countSuhuMinTidakHujan =$datasetSuhuMinTidakHujan['total'];
+								
+								$querySuhuMinHujanSangatRingan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 0.01 and 5");
+								$datasetSuhuMaxHujanSangatRingan = mysqli_fetch_assoc($querySuhuMaxHujanSangatRingan);
+								$countSuhuMaxHujanSangatRingan=$datasetSuhuMaxHujanSangatRingan['total'];
+								
+								$querySuhuMaxHujanRingan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 5.01 and 20");
+								$datasetSuhuMaxHujanRingan = mysqli_fetch_assoc($querySuhuMaxHujanRingan);
+								$countSuhuMaxHujanRingan = $datasetSuhuMaxHujanRingan['total'];
+								
+								$querySuhuMaxHujanSedang = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 20.1 and 50");
+								$datasetSuhuMaxHujanSedang = mysqli_fetch_assoc($querySuhuMaxHujanSedang);
+								$countSuhuMaxHujanSedang = $datasetSuhuMaxHujanSedang['total'];
+								
+								$querySuhuMaxHujanLebat = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 50.1 and 100");
+								$datasetSuhuMaxHujanLebat = mysqli_fetch_assoc($querySuhuMaxHujanLebat);
+								$countSuhuMaxHujanLebat = $datasetSuhuMaxHujanLebat['total'];
+								
+								//hitung entropy kelembapan
+								$querySuhuMaxTidakHujan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca=0");
+								$datasetSuhuMaxTidakHujan = mysqli_fetch_assoc($querySuhuMaxTidakHujan);
+								$countSuhuMaxTidakHujan =$datasetSuhuMaxTidakHujan['total'];
+								
+								$querySuhuMaxHujanSangatRingan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 0.01 and 5");
+								$datasetSuhuMaxHujanSangatRingan = mysqli_fetch_assoc($querySuhuMaxHujanSangatRingan);
+								$countSuhuMaxHujanSangatRingan=$datasetSuhuMaxHujanSangatRingan['total'];
+								
+								$querySuhuMaxHujanRingan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 5.01 and 20");
+								$datasetSuhuMaxHujanRingan = mysqli_fetch_assoc($querySuhuMaxHujanRingan);
+								$countSuhuMaxHujanRingan = $datasetSuhuMaxHujanRingan['total'];
+								
+								$querySuhuMaxHujanSedang = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 20.1 and 50");
+								$datasetSuhuMaxHujanSedang = mysqli_fetch_assoc($querySuhuMaxHujanSedang);
+								$countSuhuMaxHujanSedang = $datasetSuhuMaxHujanSedang['total'];
+								
+								$querySuhuMaxHujanLebat = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca between 50.1 and 100");
+								$datasetSuhuMaxHujanLebat = mysqli_fetch_assoc($querySuhuMaxHujanLebat);
+								$countSuhuMaxHujanLebat = $datasetSuhuMaxHujanLebat['total'];
+								print "<div class=\"page-header\"></div>"."Suhu Max Kategori Tidak Hujan :".$countSuhuMaxTidakHujan;
+								
 								?>
 								
                                 </div>
