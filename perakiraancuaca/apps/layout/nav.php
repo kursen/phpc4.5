@@ -46,7 +46,7 @@
 							
                         </li>
 						<li>
-							<a href="#"><i class="fa fa-cloud-download fa-fw"></i> Load Faktor</a>
+							<a href="#" data-toggle="modal" data-target="#modalfaktor"><i class="fa fa-cloud-download fa-fw"></i> Load Faktor</a>
 						</li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Perkiraan<span class="fa arrow"></span></a>
@@ -64,3 +64,33 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+		<!--modal-->
+		<div class="modal fade" id="modalfaktor" tabindex="-1" role="dialog" aria-labelledby="modalfaktorlabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Browse DataSet</h4>
+			  </div>
+			  <div class="modal-body">
+				<form class="form-horizontal" method="post" action="Controller/loaddataset.php" enctype="multipart/form-data">
+									  
+									   <div class="form-group">
+										<label class="col-sm-4 control-label">Data Faktor</label>
+										<div class="col-sm-3">
+										  <input type="file" name="datasetfile">
+										  <p class="help-block">.xlsx</p>
+										</div>
+									  </div>
+									   
+									  <div class="form-group">
+										<div class="col-sm-offset-4 col-sm-10">
+										  <button id="btn-submit" type="submit" name="submit" class="btn btn-success"><i class="fa fa-send"></i> Upload</button>
+										</div>
+									  </div>
+									</form>
+			  </div>
+			 
+			</div>
+		  </div>
+		</div>
