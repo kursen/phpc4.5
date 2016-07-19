@@ -73,7 +73,7 @@
 				<h4 class="modal-title" id="myModalLabel">Browse DataSet</h4>
 			  </div>
 			  <div class="modal-body">
-				<form class="form-horizontal" method="post" action="Controller/loaddataset.php" enctype="multipart/form-data">
+				<form class="form-horizontal" method="post" action="Controller/loaddataset.php" enctype="multipart/form-data" id="frmbrowse">
 									  
 									   <div class="form-group">
 										<label class="col-sm-4 control-label">Data Faktor</label>
@@ -85,7 +85,7 @@
 									   
 									  <div class="form-group">
 										<div class="col-sm-offset-4 col-sm-10">
-										  <button id="btn-submit" type="submit" name="submit" class="btn btn-success"><i class="fa fa-send"></i> Upload</button>
+										  <button id="btnsub" type="submit" name="submit" class="btn btn-success"><i class="fa fa-send"></i> Upload</button>
 										</div>
 									  </div>
 									</form>
@@ -94,3 +94,4 @@
 			</div>
 		  </div>
 		</div>
+		
