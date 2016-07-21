@@ -103,10 +103,43 @@
 								(-($countHujanSedang/$AllCount)*log($countHujanSedang/$AllCount,2))+
 								(-($countHujanLebat/$AllCount)*log($countHujanLebat/$AllCount,2));
 								
-								print "<p/>"."Nilai Semua Entropy = ".$Eall;
+								print "<p/>"."Nilai Semua Entropy = ".$Eall."<br/>";
 								
+								//menghitung split info suhu max.
+								$querygroupsuhumax = "select  suhu_max from trainingtable group by suhu_max order by suhu_max";
+								$arraygroupsuhumax =array();
+								$executegroupsuhumax = mysqli_query($connection,$querygroupsuhumax);
+								while($datagroupsuhumax= mysqli_fetch_array($executegroupsuhumax)){
+									array_push($arraygroupsuhumax,$datagroupsuhumax['suhu_max']);
+								}
+								
+								$arraytemp1groupsuhumax=array();
+								for($count=0;$count<count($arraygroupsuhumax);$count++){
+									if($count%2==0){
+										if($arraygroupsuhumax[$count]!=max($arraygroupsuhumax)){
+											$arrsplitinfo=($arraygroupsuhumax[$count]+$arraygroupsuhumax[$count+1])/2;
+											
+										}else{
+											
+										}
+									}
+									
+									
+									
+								}
+								for($count=0;$count<count($arraytemp1groupsuhumax);$count++){
+									if($count%2==0){
+										if($arraytemp1groupsuhumax[$count]!=max($arraytemp1groupsuhumax)){
+											$arrsplitinfo=($arraygroupsuhumax[$count]+$arraygroupsuhumax[$count+1])/2;
+											print $arrsplitinfo."<br/>";
+										}
+									}
+								}
+								
+								print"==================\n"."</p>";
+								//print count($arraygroupsuhumax);
 								//hitung entropy suhu max.
-								$querySuhuMaxTidakHujan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca=0");
+								/*$querySuhuMaxTidakHujan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca=0");
 								$datasetSuhuMaxTidakHujan = mysqli_fetch_assoc($querySuhuMaxTidakHujan);
 								$countSuhuMaxTidakHujan =$datasetSuhuMaxTidakHujan['total'];
 								
@@ -168,7 +201,7 @@
 								$datasetSuhuMaxHujanLebat = mysqli_fetch_assoc($querySuhuMaxHujanLebat);
 								$countSuhuMaxHujanLebat = $datasetSuhuMaxHujanLebat['total'];
 								print "<div class=\"page-header\"></div>"."Suhu Max Kategori Tidak Hujan :".$countSuhuMaxTidakHujan;
-								
+								*/
 								?>
 								
                                 </div>
