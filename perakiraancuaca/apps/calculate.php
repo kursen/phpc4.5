@@ -106,37 +106,68 @@
 								print "<p/>"."Nilai Semua Entropy = ".$Eall."<br/>";
 								
 								//menghitung split info suhu max.
+								$arraypreparationsuhumax =array();//preparation
+								$arraymodelingsuhumax =array();//modeling
+								$arrayevaluationsuhumax = array();//evaluation
+								//
 								$querygroupsuhumax = "select  suhu_max from trainingtable group by suhu_max order by suhu_max";
-								$arraygroupsuhumax =array();
+								
 								$executegroupsuhumax = mysqli_query($connection,$querygroupsuhumax);
+								//preparation
 								while($datagroupsuhumax= mysqli_fetch_array($executegroupsuhumax)){
-									array_push($arraygroupsuhumax,$datagroupsuhumax['suhu_max']);
+									array_push($arraypreparationsuhumax,$datagroupsuhumax['suhu_max']);
 								}
 								
-								$arraytemp1groupsuhumax=array();
-								for($count=0;$count<count($arraygroupsuhumax);$count++){
+								for($count=0;$count<count($arraypreparationsuhumax);$count++){
 									if($count%2==0){
-										if($arraygroupsuhumax[$count]!=max($arraygroupsuhumax)){
-											$arrsplitinfo=($arraygroupsuhumax[$count]+$arraygroupsuhumax[$count+1])/2;
-											
-										}else{
-											
+										if($arraypreparationsuhumax[$count]!=max($arraypreparationsuhumax)){
+											$arrsplitinfo=($arraypreparationsuhumax[$count]+$arraypreparationsuhumax[$count+1])/2;
+											array_push($arraymodelingsuhumax,$arrsplitinfo);
 										}
 									}
 									
-									
-									
 								}
-								for($count=0;$count<count($arraytemp1groupsuhumax);$count++){
+								//modeling
+								
+								for($count=0;$count<count($arraymodelingsuhumax);$count++){
 									if($count%2==0){
-										if($arraytemp1groupsuhumax[$count]!=max($arraytemp1groupsuhumax)){
-											$arrsplitinfo=($arraygroupsuhumax[$count]+$arraygroupsuhumax[$count+1])/2;
-											print $arrsplitinfo."<br/>";
+										if($arraymodelingsuhumax[$count]!=max($arraymodelingsuhumax)){
+											$arrsplitinfo=($arraymodelingsuhumax[$count]+$arraymodelingsuhumax[$count+1])/2;
+											array_push($arrayevaluationsuhumax,$arrsplitinfo);
 										}
 									}
+									
 								}
+								print "<p/>";
+								print_r($arrayevaluationsuhumax);
+								print "<p/>";
+								//Evaluation
+								$temp=0;
+								$arrjumlahkategorisuhumax=array();
+								for($count=0;$count<count($arrayevaluationsuhumax);$count++){
+									$temp=$arrayevaluationsuhumax[$count];
+									
+									if($arrayevaluationsuhumax[$count]!=max($arrayevaluationsuhumax)){
+										
+										$qev1 = mysqli_query($connection,"select count(Id) as total from trainingtable where suhu_max between $temp and $arrayevaluationsuhumax[$count] and cuaca =0");
+										$getqev1 = mysqli_fetch_assoc($qev1);
+										
+										
+										$qev2 = mysqli_query($connection,"select count(Id) as total from trainingtable where suhu_max between $temp and $arrayevaluationsuhumax[$count] and cuaca between 0.01 and 5");
+										$getqev2 = mysqli_fetch_assoc($qev2);
+										
+										$arrgetdata=array(
+											'kategori1'=>$getqev1['total'],
+											'kategori2'=>$getqev2['total']
+										);
+										$temp=$arrayevaluationsuhumax[$count];
+										array_push($arrjumlahkategorisuhumax,$arrgetdata);
+										print_r($arrjumlahkategorisuhumax);
+									}
+								}
+								print "<br/>";
 								
-								print"==================\n"."</p>";
+								
 								//print count($arraygroupsuhumax);
 								//hitung entropy suhu max.
 								/*$querySuhuMaxTidakHujan = mysqli_query($connection,"select count(suhu_max) as total from trainingtable where cuaca=0");
