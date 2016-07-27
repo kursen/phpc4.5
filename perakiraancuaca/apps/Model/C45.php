@@ -1,4 +1,5 @@
 <?php
+
 Class c45{
 
 	public function entropy($values)
@@ -37,7 +38,7 @@ Class c45{
 		 
 	 }
 	 public function resultsplitinfo($arrval){
-		 while(count($arrval)>2){
+		 while(count($arrval)>1){
 			 $arrval=$this->gensplitinfo($arrval);
 		}
 		return $arrval[0];
@@ -59,6 +60,43 @@ Class c45{
 		  $gain = $entropy_all - $gain;
 
 		  return $gain;
+		}
+		
+		public function giniIndex($arrayval){
+			for($counter=0;$counter<count($arrayval);$counter++){
+				
+			}
+		}
+		//public function getCountCategory($columnname,$val){
+			
+		//}
+		
+		public function generalsplit($columnname){
+			require('config.php');
+			$arrayreturn = array();
+			$str_query ="select ".$columnname." from trainingtable ".$columnname;
+			//$str_query= "'".$str_query."'";
+			$execute_query = mysqli_query($connection,$str_query);
+			if($execute_query){
+				while($data = mysqli_fetch_array($execute_query)){
+					array_push($arrayreturn,$data[$columnname]);
+				}
+			}
+			return $arrayreturn;
+		}
+		
+		public function sum_count_category($param_category1,$param_category2,$columnname){
+			require('config.php');
+			$arrayreturn = array();
+			$str_query ="select ".$columnname." from trainingtable ".$columnname;
+			//$str_query= "'".$str_query."'";
+			$execute_query = mysqli_query($connection,$str_query);
+			if($execute_query){
+				while($data = mysqli_fetch_array($execute_query)){
+					array_push($arrayreturn,$data[$columnname]);
+				}
+			}
+			return $arrayreturn;
 		}
 }
 ?>

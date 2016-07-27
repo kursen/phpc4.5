@@ -114,35 +114,15 @@
 								$entropyall = $c45->entropy($arrjlhkasus);
 								
 								$arrtempattributsuhumax =array();
+								
+								
 								//split info suhu max tidak hujan
-								$data_splitinfo_1=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_tidakhujan);
-								$results_split_info_1 =$c45->resultsplitinfo($data_splitinfo_1);
-								array_push($arrtempattributsuhumax,$results_split_info_1);
-								
-								//split info suhu max  hujan sangat ringan
-								$data_splitinfo_2=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_sangat_ringan);
-								$results_split_info_2 =$c45->resultsplitinfo($data_splitinfo_2);
-								array_push($arrtempattributsuhumax,$results_split_info_2);
-								
-								//split info suhu max hujan ringan
-								$data_splitinfo_3=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_ringan);
-								$results_split_info_3 =$c45->resultsplitinfo($data_splitinfo_3);
-								array_push($arrtempattributsuhumax,$results_split_info_3);
-								
-								//split info suhu max hujan sedang
-								$data_splitinfo_4=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_sedang);
-								$results_split_info_4 =$c45->resultsplitinfo($data_splitinfo_4);
-								array_push($arrtempattributsuhumax,$results_split_info_4);
-								
-								//split info suhu max hujan lebat
-								$data_splitinfo_5=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_lebat);
-								$results_split_info_5 =$c45->resultsplitinfo($data_splitinfo_5);
-								array_push($arrtempattributsuhumax,$results_split_info_5);
+								$query_split_info_suhu_max = $c45->generalsplit('suhu_max');
 								
 								
-								$last_results_attributsuhumax =$c45->gensplitinfo($arrtempattributsuhumax);
+								$data_splitinfo_suhu_max=$c45->resultsplitinfo($query_split_info_suhu_max);
 								
-								print_r($last_results_attributsuhumax);
+								
 								?>
 								<table class="table table-bordered">
 									<thead>
@@ -179,12 +159,37 @@
 											<td class="text-right"><?php print $entropyall;?></td>
 											<td></td>
 										</tr>
+										
+									</tbody>
+								</table>
+								
+								<table class="table table-bordered">
+									<thead>
 										<tr>
-											<td></td>
-											<td>Suhu Max.</td>
+											<th colspan="<?php print count($data_splitinfo_suhu_max)*2; ?>">Suhu Max</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<?php
+												
+												
+													print "<td colspan='2'>";
+													print $data_splitinfo_suhu_max;
+													print "</td>";
+												
+											?>
+										</tr>
+										<tr>
+											<?php
+												for($i=0;$i<count($data_splitinfo_suhu_max);$i++){
+													print "<td> '<=' </td><td> '>' </td>";
+												}
+											?>
 										</tr>
 									</tbody>
-								<table>
+								</table>
+								
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 
@@ -226,3 +231,33 @@
 </body>
 
 </html>
+<?php
+/*$data_splitinfo_1=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_tidakhujan);
+								$results_split_info_1 =$c45->resultsplitinfo($data_splitinfo_1);
+								array_push($arrtempattributsuhumax,$results_split_info_1);
+								
+								//split info suhu max  hujan sangat ringan
+								$data_splitinfo_2=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_sangat_ringan);
+								$results_split_info_2 =$c45->resultsplitinfo($data_splitinfo_2);
+								array_push($arrtempattributsuhumax,$results_split_info_2);
+								
+								//split info suhu max hujan ringan
+								$data_splitinfo_3=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_ringan);
+								$results_split_info_3 =$c45->resultsplitinfo($data_splitinfo_3);
+								array_push($arrtempattributsuhumax,$results_split_info_3);
+								
+								//split info suhu max hujan sedang
+								$data_splitinfo_4=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_sedang);
+								$results_split_info_4 =$c45->resultsplitinfo($data_splitinfo_4);
+								array_push($arrtempattributsuhumax,$results_split_info_4);
+								
+								//split info suhu max hujan lebat
+								$data_splitinfo_5=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_lebat);
+								$results_split_info_5 =$c45->resultsplitinfo($data_splitinfo_5);
+								array_push($arrtempattributsuhumax,$results_split_info_5);*/
+								
+								
+								//$last_results_attributsuhumax =$c45->gensplitinfo($arrtempattributsuhumax);
+								
+								
+								//print_r($last_results_attributsuhumax);
