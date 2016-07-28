@@ -119,9 +119,10 @@
 								//split info suhu max tidak hujan
 								$query_split_info_suhu_max = $c45->generalsplit('suhu_max');
 								
-								
 								$data_splitinfo_suhu_max=$c45->resultsplitinfo($query_split_info_suhu_max);
 								
+								$count_splitinfo_less_suhumax_tidakhujan=$c45->sum_count_category(0.00,0.00,'suhu_max',$data_splitinfo_suhu_max,'<=');
+								print $count_splitinfo_less_suhumax_tidakhujan;
 								
 								?>
 								<table class="table table-bordered">

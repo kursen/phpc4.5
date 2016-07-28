@@ -85,18 +85,21 @@ Class c45{
 			return $arrayreturn;
 		}
 		
-		public function sum_count_category($param_category1,$param_category2,$columnname){
+		public function sum_count_category($param_category1,$param_category2,$columnname,$val,$mark){
 			require('config.php');
-			$arrayreturn = array();
-			$str_query ="select ".$columnname." from trainingtable ".$columnname;
-			//$str_query= "'".$str_query."'";
-			$execute_query = mysqli_query($connection,$str_query);
-			if($execute_query){
-				while($data = mysqli_fetch_array($execute_query)){
-					array_push($arrayreturn,$data[$columnname]);
-				}
+			$str_query='';
+			$returnvalue=0;
+			if($param_category1>=0.01){
+				$str_query = "select count(".$columnname.") as total from trainingtable where ".$columnname.$mark.$val." and cuaca between ".$param_category1." and ".$param_category2;
+			}else{
+				$str_query = "select count(".$columnname.") as total from trainingtable where ".$columnname.$mark.$val." and cuaca =".$param_category1;
 			}
-			return $arrayreturn;
+			$execute = mysqli_query($connection,$str_query);
+			if($execute){
+				$returnvalue = mysqli_fetch_assoc($execute);
+				$returnvalue = $returnvalue['total'];
+			}
+			return $returnvalue;
 		}
 }
 ?>
