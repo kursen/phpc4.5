@@ -1,7 +1,8 @@
 <?php
-$a= (-(1/31));
-$b= log((1/31),2);
-//print (-(1/32)*log(1/31,2));
-//print is_infinite(log(0,2));
-print 0.92481870-0.01780631;
+require('Model/config.php');
+$query = "select * from trainingtable";
+$execute = mysqli_query($connection,$query);
+while($data=mysqli_fetch_array($execute)){
+	print_r($data);
+}
 ?>

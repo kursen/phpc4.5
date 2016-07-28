@@ -75,7 +75,7 @@ Class c45{
 			require('config.php');
 			$arrayreturn = array();
 			$str_query ="select ".$columnname." from trainingtable ".$columnname;
-			//$str_query= "'".$str_query."'";
+			
 			$execute_query = mysqli_query($connection,$str_query);
 			if($execute_query){
 				while($data = mysqli_fetch_array($execute_query)){

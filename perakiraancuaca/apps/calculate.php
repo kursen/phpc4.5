@@ -44,7 +44,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Kalkulasi METODE C45</h1>
+                  
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -59,70 +59,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
 								<?php
-								require('Model/config.php');
-								require('Model/C45.php');
-								//Banyak Kategori
-								
-								
-								
-								$queryAllcount = mysqli_query($connection,"select * from trainingtable");
-								
-								
-								$arr_jlhsuhu_max_kasus_tidakhujan = array();
-								$arr_jlhsuhu_min_kasus_tidakhujan = array();
-								
-								$arr_jlhsuhu_max_kasus_hujan_sangat_ringan = array();
-								$arr_jlhsuhu_min_kasus_hujan_sangat_ringan = array();
-								
-								$arr_jlhsuhu_max_kasus_hujan_ringan = array();
-								$arr_jlhsuhu_min_kasus_hujan_ringan = array();
-								
-								$arr_jlhsuhu_max_kasus_hujan_sedang = array();
-								$arr_jlhsuhu_min_kasus_hujan_sedang = array();
-								
-								$arr_jlhsuhu_max_kasus_hujan_lebat = array();
-								$arr_jlhsuhu_min_kasus_hujan_lebat = array();
-								while($alldata = mysqli_fetch_array($queryAllcount)){
-									if($alldata['cuaca']==0){
-										array_push($arr_jlhsuhu_max_kasus_tidakhujan,$alldata['suhu_max']);
-										array_push($arr_jlhsuhu_min_kasus_tidakhujan,$alldata['suhu_min']);
-									}else if($alldata['cuaca']>=0.01 && $alldata['cuaca']<5){
-										array_push($arr_jlhsuhu_max_kasus_hujan_sangat_ringan,$alldata['suhu_max']);
-										array_push($arr_jlhsuhu_min_kasus_hujan_sangat_ringan,$alldata['suhu_min']);
-									}else if($alldata['cuaca']>=5.01 && $alldata['cuaca']<20){
-										array_push($arr_jlhsuhu_max_kasus_hujan_ringan,$alldata['suhu_max']);
-										array_push($arr_jlhsuhu_min_kasus_hujan_ringan,$alldata['suhu_min']);
-									}else if($alldata['cuaca']>=20.1 && $alldata['cuaca']<50){
-										array_push($arr_jlhsuhu_max_kasus_hujan_sedang,$alldata['suhu_max']);
-										array_push($arr_jlhsuhu_min_kasus_hujan_sedang,$alldata['suhu_min']);
-									}
-									else{
-										array_push($arr_jlhsuhu_max_kasus_hujan_lebat,$alldata['suhu_max']);
-										array_push($arr_jlhsuhu_min_kasus_hujan_lebat,$alldata['suhu_min']);
-									}
-									
-								}
-								$arrjlhkasus = array(count($arr_jlhsuhu_max_kasus_tidakhujan),
-								count($arr_jlhsuhu_max_kasus_hujan_sangat_ringan),
-								count($arr_jlhsuhu_max_kasus_hujan_ringan),
-								count($arr_jlhsuhu_max_kasus_hujan_sedang),
-								count($arr_jlhsuhu_max_kasus_hujan_lebat)
-								);
-								
-								//hitung semua entropy;
-								$c45 = new c45();
-								$entropyall = $c45->entropy($arrjlhkasus);
-								
-								$arrtempattributsuhumax =array();
-								
-								
-								//split info suhu max tidak hujan
-								$query_split_info_suhu_max = $c45->generalsplit('suhu_max');
-								
-								$data_splitinfo_suhu_max=$c45->resultsplitinfo($query_split_info_suhu_max);
-								
-								$count_splitinfo_less_suhumax_tidakhujan=$c45->sum_count_category(0.00,0.00,'suhu_max',$data_splitinfo_suhu_max,'<=');
-								print $count_splitinfo_less_suhumax_tidakhujan;
+								require('calculatec45.php');
 								
 								?>
 								<table class="table table-bordered">
@@ -163,11 +100,11 @@
 										
 									</tbody>
 								</table>
-								
+							<div class="col-lg-6 col-sm-6">
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th colspan="<?php print count($data_splitinfo_suhu_max)*2; ?>">Suhu Max</th>
+											<th colspan="3">Suhu Max</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -175,22 +112,264 @@
 											<?php
 												
 												
-													print "<td colspan='2'>";
+													print "<td colspan='3'>";
 													print $data_splitinfo_suhu_max;
 													print "</td>";
 												
 											?>
 										</tr>
 										<tr>
+										<td></td>
 											<?php
 												for($i=0;$i<count($data_splitinfo_suhu_max);$i++){
 													print "<td> '<=' </td><td> '>' </td>";
 												}
 											?>
 										</tr>
+										<tr>
+											<td>Tidak Hujan</td>
+											<td><?php print $count_splitinfo_less_suhumax_tidakhujan;?></td>
+											<td><?php print $count_splitinfo_more_suhumax_tidakhujan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sangat Ringan</td>
+											<td><?php print $count_splitinfo_less_suhumax_hujan_sangatringan;?></td>
+											<td><?php print $count_splitinfo_more_suhumax_hujan_sangatringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Ringan</td>
+											<td><?php print $count_splitinfo_less_suhumax_hujan_ringan;?></td>
+											<td><?php print $count_splitinfo_more_suhumax_hujan_ringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sedang</td>
+											<td><?php print $count_splitinfo_less_suhumax_hujan_sedang;?></td>
+											<td><?php print $count_splitinfo_more_suhumax_hujan_sedang;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Lebat</td>
+											<td><?php print $count_splitinfo_less_suhumax_hujan_lebat;?></td>
+											<td><?php print $count_splitinfo_more_suhumax_hujan_lebat;?></td>
+										</tr>
+										
 									</tbody>
 								</table>
+							</div>
+							<div class="col-lg-6 col-sm-6">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th colspan="3">Suhu Min</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<?php
+												
+												
+													print "<td colspan='3'>";
+													print $data_splitinfo_suhu_min;
+													print "</td>";
+												
+											?>
+										</tr>
+										<tr>
+										<td></td>
+											<?php
+												
+													print "<td> '<=' </td><td> '>' </td>";
+											?>
+										</tr>
+										<tr>
+											<td>Tidak Hujan</td>
+											<td><?php print $count_splitinfo_less_suhumin_tidakhujan;?></td>
+											<td><?php print $count_splitinfo_more_suhumin_tidakhujan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sangat Ringan</td>
+											<td><?php print $count_splitinfo_less_suhumin_hujan_sangatringan;?></td>
+											<td><?php print $count_splitinfo_more_suhumin_hujan_sangatringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Ringan</td>
+											<td><?php print $count_splitinfo_less_suhumin_hujan_ringan;?></td>
+											<td><?php print $count_splitinfo_more_suhumin_hujan_ringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sedang</td>
+											<td><?php print $count_splitinfo_less_suhumin_hujan_sedang;?></td>
+											<td><?php print $count_splitinfo_more_suhumin_hujan_sedang;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Lebat</td>
+											<td><?php print $count_splitinfo_less_suhumin_hujan_lebat;?></td>
+											<td><?php print $count_splitinfo_more_suhumin_hujan_lebat;?></td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-6 col-sm-6">
+							<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th colspan="3">Kelembapan</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<?php
+												
+												
+													print "<td colspan='3'>";
+													print $data_splitinfo_kelembapan;
+													print "</td>";
+												
+											?>
+										</tr>
+										<tr>
+										<td></td>
+											<?php
+												
+													print "<td> '<=' </td><td> '>' </td>";
+											?>
+										</tr>
+										<tr>
+											<td>Tidak Hujan</td>
+											<td><?php print $count_splitinfo_less_kelembapan_tidakhujan;?></td>
+											<td><?php print $count_splitinfo_more_kelembapan_tidakhujan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sangat Ringan</td>
+											<td><?php print $count_splitinfo_less_kelembapan_hujan_sangatringan;?></td>
+											<td><?php print $count_splitinfo_more_kelembapan_hujan_sangatringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Ringan</td>
+											<td><?php print $count_splitinfo_less_kelembapan_hujan_ringan;?></td>
+											<td><?php print $count_splitinfo_more_kelembapan_hujan_ringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sedang</td>
+											<td><?php print $count_splitinfo_less_kelembapan_hujan_sedang;?></td>
+											<td><?php print $count_splitinfo_more_kelembapan_hujan_sedang;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Lebat</td>
+											<td><?php print $count_splitinfo_less_kelembapan_hujan_lebat;?></td>
+											<td><?php print $count_splitinfo_more_kelembapan_hujan_lebat;?></td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
 								
+							<div class="col-lg-6 col-sm-6">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th colspan="3">Arah Angin</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<?php
+												
+												
+													print "<td colspan='3'>";
+													print $data_splitinfo_arah_angin;
+													print "</td>";
+												
+											?>
+										</tr>
+										<tr>
+										<td></td>
+											<?php
+												
+													print "<td> '<=' </td><td> '>' </td>";
+											?>
+										</tr>
+										<tr>
+											<td>Tidak Hujan</td>
+											<td><?php print $count_splitinfo_less_arah_angin_tidakhujan;?></td>
+											<td><?php print $count_splitinfo_more_arah_angin_tidakhujan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sangat Ringan</td>
+											<td><?php print $count_splitinfo_less_arah_angin_hujan_sangatringan;?></td>
+											<td><?php print $count_splitinfo_more_arah_angin_hujan_sangatringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Ringan</td>
+											<td><?php print $count_splitinfo_less_arah_angin_hujan_ringan;?></td>
+											<td><?php print $count_splitinfo_more_arah_angin_hujan_ringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sedang</td>
+											<td><?php print $count_splitinfo_less_arah_angin_hujan_sedang;?></td>
+											<td><?php print $count_splitinfo_more_arah_angin_hujan_sedang;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Lebat</td>
+											<td><?php print $count_splitinfo_less_arah_angin_hujan_lebat;?></td>
+											<td><?php print $count_splitinfo_more_arah_angin_hujan_lebat;?></td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th colspan="3">Kecepatan Angin</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<?php
+												
+												
+													print "<td colspan='3'>";
+													print $data_splitinfo_kecepatan_angin;
+													print "</td>";
+												
+											?>
+										</tr>
+										<tr>
+										<td></td>
+											<?php
+												
+													print "<td> '<=' </td><td> '>' </td>";
+											?>
+										</tr>
+										<tr>
+											<td>Tidak Hujan</td>
+											<td><?php print $count_splitinfo_less_kecepatan_angin_tidakhujan;?></td>
+											<td><?php print $count_splitinfo_more_kecepatan_angin_tidakhujan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sangat Ringan</td>
+											<td><?php print $count_splitinfo_less_kecepatan_angin_hujan_sangatringan;?></td>
+											<td><?php print $count_splitinfo_more_kecepatan_angin_hujan_sangatringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Ringan</td>
+											<td><?php print $count_splitinfo_less_kecepatan_angin_hujan_ringan;?></td>
+											<td><?php print $count_splitinfo_more_kecepatan_angin_hujan_ringan;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Sedang</td>
+											<td><?php print $count_splitinfo_less_kecepatan_angin_hujan_sedang;?></td>
+											<td><?php print $count_splitinfo_more_kecepatan_angin_hujan_sedang;?></td>
+										</tr>
+										<tr>
+											<td>Hujan Lebat</td>
+											<td><?php print $count_splitinfo_less_kecepatan_angin_hujan_lebat;?></td>
+											<td><?php print $count_splitinfo_more_kecepatan_angin_hujan_lebat;?></td>
+										</tr>
+										
+									</tbody>
+								</table>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 
