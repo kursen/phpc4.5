@@ -11,10 +11,12 @@ Class c45{
 	  {
 	   if (count($values) > 0)
 	   {
-		$e += - ((($values[$counter] / $sum) * log($values[$counter] / $sum, 2)));
+		   if($values[$counter]!=0){
+			$e += - ((($values[$counter] / $sum) * log($values[$counter] / $sum, 2)));
+		   }
 	   }
 	  }
-
+	  $e=number_format((float)$e, 4, '.', '');
 	  return $e;
 	 }
 	 
@@ -44,7 +46,7 @@ Class c45{
 		return $arrval[0];
 	 }
 	 
-	 private function gain($entropy_all, $values){
+	 public function gain($entropy_all, $values){
 		  $total_records = 0;
 		  foreach ($values as $sub_values)
 		  {

@@ -1,8 +1,4 @@
-<?php
-require('Model/config.php');
-$query = "select * from trainingtable";
-$execute = mysqli_query($connection,$query);
-while($data=mysqli_fetch_array($execute)){
-	print_r($data);
-}
-?>
+<form method="post" action="save.php">
+	<input type='text' name='angka' />
+	<input type="submit" name="submit"/>
+</form>

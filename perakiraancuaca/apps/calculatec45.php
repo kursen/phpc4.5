@@ -61,31 +61,51 @@ require('Model/config.php');
 								
 								$data_splitinfo_suhu_max=$c45->resultsplitinfo($query_split_info_suhu_max);
 								
-								$arrcount_suhu_max = array();
+								
 								
 								$count_splitinfo_less_suhumax_tidakhujan=$c45->sum_count_category(0.00,0.00,'suhu_max',$data_splitinfo_suhu_max,'<=');
-								//array_push($arrcount_suhu_max,'Tidak Hujan');
-								//array_push($arrcount_suhu_max,$count_splitinfo_less_suhumax_tidakhujan);
+								
 								$count_splitinfo_more_suhumax_tidakhujan=$c45->sum_count_category(0.00,0.00,'suhu_max',$data_splitinfo_suhu_max,'>');
-								//array_push($arrcount_suhu_max,$count_splitinfo_more_suhumax_tidakhujan);
 								
 								
 								$count_splitinfo_less_suhumax_hujan_sangatringan=$c45->sum_count_category(0.01,5.00,'suhu_max',$data_splitinfo_suhu_max,'<=');
-								$count_splitinfo_more_suhumax_hujan_sangatringan=$c45->sum_count_category(0.01,5.00,'suhu_max',$data_splitinfo_suhu_max,'>');//array_push($arrcount_suhu_max,$count_splitinfo_less_suhumax_hujan_sangatraingan);
+								$count_splitinfo_more_suhumax_hujan_sangatringan=$c45->sum_count_category(0.01,5.00,'suhu_max',$data_splitinfo_suhu_max,'>');
 								
 								$count_splitinfo_less_suhumax_hujan_ringan=$c45->sum_count_category(5.01,20.10,'suhu_max',$data_splitinfo_suhu_max,'<=');
 								
 								$count_splitinfo_more_suhumax_hujan_ringan=$c45->sum_count_category(5.01,20.10,'suhu_max',$data_splitinfo_suhu_max,'>');
-								//array_push($arrcount_suhu_max,$count_splitinfo_less_suhumax_hujan_ringan);
+								
 								
 								$count_splitinfo_less_suhumax_hujan_sedang=$c45->sum_count_category(20.10,50.00,'suhu_max',$data_splitinfo_suhu_max,'<=');
 								$count_splitinfo_more_suhumax_hujan_sedang=$c45->sum_count_category(20.10,50.00,'suhu_max',$data_splitinfo_suhu_max,'>');
-								//array_push($arrcount_suhu_max,$count_splitinfo_less_suhumax_hujan_sedang);
+								
 								
 								$count_splitinfo_less_suhumax_hujan_lebat=$c45->sum_count_category(50.10,100.00,'suhu_max',$data_splitinfo_suhu_max,'<=');
 								$count_splitinfo_more_suhumax_hujan_lebat=$c45->sum_count_category(50.10,100.00,'suhu_max',$data_splitinfo_suhu_max,'>');
-								//array_push($arrcount_suhu_max,$count_splitinfo_less_suhumax_hujan_lebat);
 								
+								$arrcount_less_suhu_max = array(
+									$count_splitinfo_less_suhumax_tidakhujan,
+									$count_splitinfo_less_suhumax_hujan_sangatringan,
+									$count_splitinfo_less_suhumax_hujan_ringan,
+									$count_splitinfo_less_suhumax_hujan_sedang,
+									$count_splitinfo_less_suhumax_hujan_lebat
+								);
+								
+								$arrcount_more_suhu_max = array(
+									$count_splitinfo_more_suhumax_tidakhujan,
+									$count_splitinfo_more_suhumax_hujan_sangatringan,
+									$count_splitinfo_more_suhumax_hujan_ringan,
+									$count_splitinfo_more_suhumax_hujan_sedang,
+									$count_splitinfo_more_suhumax_hujan_lebat
+								);
+								
+								$Entropy_less_suhumax =$c45->entropy($arrcount_less_suhu_max);
+								
+								$Entropy_more_suhumax =$c45->entropy($arrcount_more_suhu_max);
+								
+								//hitung gain
+								$g1=($entropyall)-(((array_sum($arrcount_less_suhu_max)/array_sum($arrjlhkasus))*$Entropy_less_suhumax)+((array_sum($arrcount_more_suhu_max)/array_sum($arrjlhkasus))*$Entropy_more_suhumax));
+								//$results_gain_suhumax = $c45->gain($entropyall,$arr_gain_suhumax);
 								
 								//split info suhu min 
 								$query_split_info_suhu_min = $c45->generalsplit('suhu_min');
