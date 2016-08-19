@@ -104,7 +104,8 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th colspan="3">Suhu Max</th>
+											<th colspan="2">Suhu Max</th>
+											<th>Gain : <?php print $g1;?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -112,20 +113,14 @@
 											<?php
 												
 												
-													print "<td colspan='3'>";
+													print "<td>";
 													print $data_splitinfo_suhu_max;
 													print "</td>";
+													print "<td> '<=' </td><td> '>' </td>";
 												
 											?>
 										</tr>
-										<tr>
-										<td></td>
-											<?php
-												for($i=0;$i<count($data_splitinfo_suhu_max);$i++){
-													print "<td> '<=' </td><td> '>' </td>";
-												}
-											?>
-										</tr>
+										
 										<tr>
 											<td>Tidak Hujan</td>
 											<td><?php print $count_splitinfo_less_suhumax_tidakhujan;?></td>
@@ -150,6 +145,11 @@
 											<td>Hujan Lebat</td>
 											<td><?php print $count_splitinfo_less_suhumax_hujan_lebat;?></td>
 											<td><?php print $count_splitinfo_more_suhumax_hujan_lebat;?></td>
+										</tr>
+										<tr>
+											<td>Entropy</td>
+											<td><?php print $Entropy_less_suhumax;?></td>
+											<td><?php print $Entropy_more_suhumax;?></td>
 										</tr>
 										
 									</tbody>
