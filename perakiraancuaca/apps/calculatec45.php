@@ -99,13 +99,21 @@ require('Model/config.php');
 									$count_splitinfo_more_suhumax_hujan_lebat
 								);
 								
+								//suhu min
+								
+								
 								$Entropy_less_suhumax =$c45->entropy($arrcount_less_suhu_max);
 								
 								$Entropy_more_suhumax =$c45->entropy($arrcount_more_suhu_max);
 								
 								//hitung gain
-								$g1=($entropyall)-(((array_sum($arrcount_less_suhu_max)/array_sum($arrjlhkasus))*$Entropy_less_suhumax)+((array_sum($arrcount_more_suhu_max)/array_sum($arrjlhkasus))*$Entropy_more_suhumax));
-								//$results_gain_suhumax = $c45->gain($entropyall,$arr_gain_suhumax);
+								$gain_suhumax=($entropyall)-(((array_sum($arrcount_less_suhu_max)/
+								array_sum($arrjlhkasus))*$Entropy_less_suhumax)+
+								((array_sum($arrcount_more_suhu_max)/array_sum($arrjlhkasus))*$Entropy_more_suhumax));
+								//gain suhu min
+								$gain_suhumin=($entropyall)-(((array_sum($arrcount_less_suhu_min)/
+								array_sum($arrjlhkasus))*$Entropy_less_suhumax)+
+								((array_sum($arrcount_more_suhu_max)/array_sum($arrjlhkasus))*$Entropy_more_suhumax));
 								
 								//split info suhu min 
 								$query_split_info_suhu_min = $c45->generalsplit('suhu_min');
