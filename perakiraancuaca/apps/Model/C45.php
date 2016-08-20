@@ -64,14 +64,20 @@ Class c45{
 		  return $gain;
 		}
 		
-		public function giniIndex($arrayval){
-			for($counter=0;$counter<count($arrayval);$counter++){
-				
-			}
-		}
-		//public function getCountCategory($columnname,$val){
-			
-		//}
+	public function hitung_gain($entropyall,$arrcount_less,$arrcount_more,$arrjlhkasus)
+	{
+		$Entropy_less =$this->entropy($arrcount_less);
+		$Entropy_more =$this->entropy($arrcount_more);
+		
+		$gain=($entropyall)-(((array_sum($arrcount_less)/array_sum($arrjlhkasus))*$Entropy_less)+((array_sum($arrcount_more)/array_sum($arrjlhkasus))*$Entropy_more));
+		$arrreturnval = array (
+			'entropy_less'=>$Entropy_less,
+			'entropy_more'=>$Entropy_more,
+			'gain'=>$gain
+			);
+		return $arrreturnval;
+
+	}
 		
 		public function generalsplit($columnname){
 			require('config.php');

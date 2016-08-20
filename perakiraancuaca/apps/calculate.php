@@ -51,7 +51,9 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-				<p/>
+
+                <p/>
+
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             Kalkulasi Faktor Cuaca
@@ -106,7 +108,9 @@
 									<thead>
 										<tr>
 											<th colspan="2">Suhu Max</th>
-											<th>Gain : <?php print $gain_suhumax;?></th>
+
+											<th>Gain : <?php print $arr_resultgain_suhumax['gain'];?></th>
+
 										</tr>
 									</thead>
 									<tbody>
@@ -149,8 +153,8 @@
 										</tr>
 										<tr>
 											<td>Entropy</td>
-											<td><?php print $Entropy_less_suhumax;?></td>
-											<td><?php print $Entropy_more_suhumax;?></td>
+											<td><?php print $arr_resultgain_suhumax['entropy_less'];?></td>
+											<td><?php print $arr_resultgain_suhumax['entropy_more'];?></td>
 										</tr>
 										
 									</tbody>
@@ -160,7 +164,9 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th colspan="3">Suhu Min</th>
+											<th colspan="2">Suhu Min</th>
+											<th>Gain : <?php print $arr_resultgain_suhumin['gain'];?></th>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -168,17 +174,11 @@
 											<?php
 												
 												
-													print "<td colspan='3'>";
+													print "<td>";
 													print $data_splitinfo_suhu_min;
 													print "</td>";
-												
-											?>
-										</tr>
-										<tr>
-										<td></td>
-											<?php
-												
 													print "<td> '<=' </td><td> '>' </td>";
+												
 											?>
 										</tr>
 										<tr>
@@ -206,6 +206,11 @@
 											<td><?php print $count_splitinfo_less_suhumin_hujan_lebat;?></td>
 											<td><?php print $count_splitinfo_more_suhumin_hujan_lebat;?></td>
 										</tr>
+										<tr>
+										<td>Entropy</td>
+											<td><?php print $arr_resultgain_suhumin['entropy_less'];?></td>
+											<td><?php print $arr_resultgain_suhumin['entropy_more'];?></td>
+										</tr>
 										
 									</tbody>
 								</table>
@@ -214,24 +219,17 @@
 							<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th colspan="3">Kelembapan</th>
+											<th colspan="2">Kelembapan</th>
+											<th>Gain : <?php print $arr_resultgain_kelembapan['gain'];?></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<?php
 												
-												
-													print "<td colspan='3'>";
+													print "<td >";
 													print $data_splitinfo_kelembapan;
 													print "</td>";
-												
-											?>
-										</tr>
-										<tr>
-										<td></td>
-											<?php
-												
 													print "<td> '<=' </td><td> '>' </td>";
 											?>
 										</tr>
@@ -260,7 +258,11 @@
 											<td><?php print $count_splitinfo_less_kelembapan_hujan_lebat;?></td>
 											<td><?php print $count_splitinfo_more_kelembapan_hujan_lebat;?></td>
 										</tr>
-										
+										<tr>
+										<td>Entropy</td>
+											<td><?php print $arr_resultgain_kelembapan['entropy_less'];?></td>
+											<td><?php print $arr_resultgain_kelembapan['entropy_more'];?></td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -269,7 +271,8 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th colspan="3">Arah Angin</th>
+											<th colspan="2">Arah Angin</th>
+											<th>Gain : <?php print $arr_resultgain_arah_angin['gain'];?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -277,17 +280,11 @@
 											<?php
 												
 												
-													print "<td colspan='3'>";
+													print "<td>";
 													print $data_splitinfo_arah_angin;
 													print "</td>";
-												
-											?>
-										</tr>
-										<tr>
-										<td></td>
-											<?php
-												
 													print "<td> '<=' </td><td> '>' </td>";
+												
 											?>
 										</tr>
 										<tr>
@@ -315,14 +312,19 @@
 											<td><?php print $count_splitinfo_less_arah_angin_hujan_lebat;?></td>
 											<td><?php print $count_splitinfo_more_arah_angin_hujan_lebat;?></td>
 										</tr>
-										
+										<tr>
+										<td>Entropy</td>
+											<td><?php print $arr_resultgain_arah_angin['entropy_less'];?></td>
+											<td><?php print $arr_resultgain_arah_angin['entropy_more'];?></td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
 							<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th colspan="3">Kecepatan Angin</th>
+											<th colspan="2">Kecepatan Angin</th>
+											<th>Gain : <?php print $arr_resultgain_kecepatan_angin['gain'];?></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -330,17 +332,11 @@
 											<?php
 												
 												
-													print "<td colspan='3'>";
+													print "<td>";
 													print $data_splitinfo_kecepatan_angin;
 													print "</td>";
-												
-											?>
-										</tr>
-										<tr>
-										<td></td>
-											<?php
-												
 													print "<td> '<=' </td><td> '>' </td>";
+												
 											?>
 										</tr>
 										<tr>
@@ -368,7 +364,11 @@
 											<td><?php print $count_splitinfo_less_kecepatan_angin_hujan_lebat;?></td>
 											<td><?php print $count_splitinfo_more_kecepatan_angin_hujan_lebat;?></td>
 										</tr>
-										
+										<tr>
+											<td>Entropy</td>
+											<td><?php print $arr_resultgain_kecepatan_angin['entropy_less'];?></td>
+											<td><?php print $arr_resultgain_kecepatan_angin['entropy_more'];?></td>
+										</tr>
 									</tbody>
 								</table>
                                 </div>
@@ -403,42 +403,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			
-		});
-	</script>
+
 </body>
 
 </html>
-<?php
-/*$data_splitinfo_1=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_tidakhujan);
-								$results_split_info_1 =$c45->resultsplitinfo($data_splitinfo_1);
-								array_push($arrtempattributsuhumax,$results_split_info_1);
-								
-								//split info suhu max  hujan sangat ringan
-								$data_splitinfo_2=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_sangat_ringan);
-								$results_split_info_2 =$c45->resultsplitinfo($data_splitinfo_2);
-								array_push($arrtempattributsuhumax,$results_split_info_2);
-								
-								//split info suhu max hujan ringan
-								$data_splitinfo_3=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_ringan);
-								$results_split_info_3 =$c45->resultsplitinfo($data_splitinfo_3);
-								array_push($arrtempattributsuhumax,$results_split_info_3);
-								
-								//split info suhu max hujan sedang
-								$data_splitinfo_4=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_sedang);
-								$results_split_info_4 =$c45->resultsplitinfo($data_splitinfo_4);
-								array_push($arrtempattributsuhumax,$results_split_info_4);
-								
-								//split info suhu max hujan lebat
-								$data_splitinfo_5=$c45->gensplitinfo($arr_jlhsuhu_max_kasus_hujan_lebat);
-								$results_split_info_5 =$c45->resultsplitinfo($data_splitinfo_5);
-								array_push($arrtempattributsuhumax,$results_split_info_5);*/
-								
-								
-								//$last_results_attributsuhumax =$c45->gensplitinfo($arrtempattributsuhumax);
-								
-								
-								//print_r($last_results_attributsuhumax);
