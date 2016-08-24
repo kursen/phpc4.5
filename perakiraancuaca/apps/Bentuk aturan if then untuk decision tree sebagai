@@ -1,0 +1,16 @@
+Bentuk aturan if then untuk decision tree sebagai berikut:
+	If  cuaca	= mendung then playball = ya
+	If cuaca 	= {cerah, hujan} and suhu > 75 then playball = tidak
+If cuaca 	= {cerah, hujan} and suhu <= 75 and angin = pelan  and  kelembaban <= 80 then playball = ya
+If cuaca 	= cerah and suhu <= 75 and angin = pelan and kelembaban >80 then playball = ya
+If cuaca 	= hujan and suhu <= 75 and angin = pelan and kelembaban >80 then playball = tidak
+If cuaca 	= cerah and suhu <= 75 and angin = kencang then playball = ya
+If cuaca	= hujan and suhu <= 75 and angin = kencang then playball = tidak
+
+if kelembapan > 82 then  curah hujan =tidak hujan 
+if kelembapan > 82 and Suhu min. > 23.3 then  curah hujan = tidak hujan
+if kelembapan > 82 and Suhu min. > 23.3 and kecepatan angin <= 0.15 then curah hujan = tidak hujan
+if kelembapan > 82 and Suhu min. > 23.3 and kecepatan angin <= 0.15 and Suhu max. > 31.5 then curah hujan = tidak hujan
+if kelembapan > 82 and Suhu min. > 23.3 and kecepatan angin <= 0.15 and Suhu max. > 31.5 and arah angin <= 74.37 then curah hujan = tidak hujan
+
+dari rule diatas dapat di amati bahwa kemungkinan besar curah hujan yang terjadi jika semua rule bernilai true adalah tidak hujan dan untuk kategori curah hujan yang lain akan diproses jika rule bernilai false
