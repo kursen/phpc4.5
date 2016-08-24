@@ -53,7 +53,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dataset</h1>
+                    <h1 class="page-header">DataSet</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -198,7 +198,7 @@
     $(document).ready(function() {
 		$('#dtpicker').datetimepicker({
 				format:'YYYY-MM-DD'
-			});//ada kau ubah ini gak ada knpa 
+			}); 
 		
         var gentable = $('#dataTables-example').DataTable({
                 responsive: true,
@@ -242,7 +242,7 @@
 				if (e) {
 					$.post("Controller/deletefactor.php",{'id':data.Id},function(data,status){
 							if(data==1){
-								alertify.success('Data berhasil dihapus!, woy kamu bayar mahal ya');
+								alertify.success('Data berhasil dihapus!');
 								gentable.ajax.reload();
 							}else{
 								alertify.error('Gagal menghapus');
@@ -378,7 +378,7 @@
 					success: function (data) {
 							data=parseInt(data);
 							if(data==1){
-								alertify.success('update berhasil, bloon :p');
+								alertify.success('update berhasil');
 							}else{
 								alertify.error('update gagal!');
 							}

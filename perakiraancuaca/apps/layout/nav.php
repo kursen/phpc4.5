@@ -42,7 +42,8 @@ require('Model/session.php');
                         </li>
                         
                         <li>
-                            <a href="dataset.php"><i class="fa fa-table fa-fw"></i> Dataset</a>
+                            <a href="dataset.php"><i class="fa fa-table fa-fw"></i> DataSet</a>
+							
                         </li>
                         <li>
                             <a href="addfactor.php"><i class="fa fa-edit fa-fw"></i> Faktor </a>
