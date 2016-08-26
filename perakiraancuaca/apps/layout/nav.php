@@ -54,6 +54,12 @@
                                 <li>
                                     <a href="calculate.php">Kalkulasi C45</a>
                                 </li>
+                                <li>
+                                    <a href="testingform.php">Testing </a>
+                                </li>
+                                 <li>
+                                    <a href="#">Load Testing </a>
+                                </li>
                                
                             </ul>
                             <!-- /.nav-second-level -->
@@ -70,13 +76,13 @@
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Browse DataSet</h4>
+				<h4 class="modal-title" id="myModalLabel">Browse DataTesting</h4>
 			  </div>
 			  <div class="modal-body">
 				<form class="form-horizontal" method="post" action="Controller/loaddataset.php" enctype="multipart/form-data" id="frmbrowse">
 									  
 									   <div class="form-group">
-										<label class="col-sm-4 control-label">Data Faktor</label>
+										<label class="col-sm-4 control-label">Data Testing</label>
 										<div class="col-sm-3">
 										  <input type="file" name="datasetfile">
 										  <p class="help-block">.xlsx</p>
