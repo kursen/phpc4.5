@@ -1,9 +1,7 @@
 <?php
 require('Model/config.php');
 require('Model/C45.php');
-								//Banyak Kategori
-								
-								
+			
 $queryAllcount = mysqli_query($connection,"select * from trainingtable");
 								
 								
@@ -42,15 +40,12 @@ count($arr_jlhsuhu_max_kasus_hujan_ringan),
 count($arr_jlhsuhu_max_kasus_hujan_sedang),
 count($arr_jlhsuhu_max_kasus_hujan_lebat)
 );
-								
-								//hitung semua entropy;
+
 $c45 = new c45();
 $entropyall = $c45->entropy($arrjlhkasus);
 								
 $arrtempattributsuhumax =array();
-								
-								
-								//split info suhu max 
+
 $query_split_info_suhu_max = $c45->generalsplit('suhu_max');
 								
 $data_splitinfo_suhu_max=$c45->resultsplitinfo($query_split_info_suhu_max);
@@ -265,3 +260,4 @@ $arrcount_more_kecepatan_angin= array(
 
 //hitung gain kecepatan angin
 $arr_resultgain_kecepatan_angin= $c45->hitung_gain($entropyall,$arrcount_less_kecepatan_angin,$arrcount_more_kecepatan_angin,$arrjlhkasus);
+

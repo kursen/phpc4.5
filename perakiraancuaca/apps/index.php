@@ -50,6 +50,7 @@
         <!-- Navigation -->
         <?php require 'layout/nav.php'; ?>
         <div id="page-wrapper">
+
             <br/>
              <ul class="nav nav-tabs">
                   <li role="presentation" class="active">
@@ -77,6 +78,7 @@
                         <!-- /.panel -->
                     </div>
                 </div>
+
             <!-- /.row -->
             </div>
              <div class="tab-pane" id="pohonkeputusan">

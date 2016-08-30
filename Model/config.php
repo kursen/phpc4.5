@@ -13,4 +13,3 @@ if(!$connection){
 	$dbselect=mysqli_select_db($connection,$dbname) or DIE('Database tidak tersedia !');
 }
 ?>
-

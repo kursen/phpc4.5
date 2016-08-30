@@ -273,7 +273,7 @@
 					success: function (data) {
 							data=parseInt(data);
 							if(data==1){
-								alertify.success('Data berhasil dikirim, bloon :p');
+								alertify.success('Data berhasil');
 							}else{
 								alertify.error('Data gagal dikirim!');
 							}

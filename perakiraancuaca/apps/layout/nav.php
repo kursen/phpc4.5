@@ -1,3 +1,6 @@
+<?php
+require('Model/session.php');
+?>
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,7 +24,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -39,7 +42,8 @@
                         </li>
                         
                         <li>
-                            <a href="dataset.php"><i class="fa fa-table fa-fw"></i> Dataset</a>
+                            <a href="dataset.php"><i class="fa fa-table fa-fw"></i> DataSet</a>
+							
                         </li>
                         <li>
                             <a href="addfactor.php"><i class="fa fa-edit fa-fw"></i> Faktor </a>

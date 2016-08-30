@@ -51,7 +51,9 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
+
                 <p/>
+
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             Kalkulasi Faktor Cuaca
@@ -106,7 +108,9 @@
 									<thead>
 										<tr>
 											<th colspan="2">Suhu Max</th>
+
 											<th>Gain : <?php print $arr_resultgain_suhumax['gain'];?></th>
+
 										</tr>
 									</thead>
 									<tbody>
