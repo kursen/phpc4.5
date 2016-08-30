@@ -49,70 +49,60 @@
 
         <!-- Navigation -->
         <?php require 'layout/nav.php'; ?>
-
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-sun-o fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>Learning Dataset</div>
-                                </div>
+            <br/>
+             <ul class="nav nav-tabs">
+                  <li role="presentation" class="active">
+                    <a href="#dashboard" data-toggle="tab">Dashboard</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="#pohonkeputusan" data-toggle="tab">PohonKeputusan</a>
+                  </li>
+            </ul>
+          
+        <div class="tab-content">
+            <div class="tab-pane active" id="dashboard">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                Grafik Dataset
                             </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Tampilkan</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div id="morris-area-chart"></div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-				<div class="col-lg-9 col-md-9">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-						Perkiraan Cuaca
+                            <!-- /.panel-body -->
                         </div>
-						<div class="panel-body">
-							25 June 2016
-						</div>
+                        <!-- /.panel -->
                     </div>
-					
                 </div>
-                
-				 
-                
+            <!-- /.row -->
             </div>
-            <!-- /.row -->
-           <div class="row">
-				<div class="col-lg-12">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            Grafik Dataset
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-area-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
+             <div class="tab-pane" id="pohonkeputusan">
+                 <div class="row">
+                    <div class="col-lg-12">
+                       
+                       <div class="col-lg-12">
+                             <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    Pohon Keputusan
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                   <img src="img/pohonfaktor.png" alt="img-tree" />
+                                </div>
+                                <!-- /.panel-body -->
+                             </div>
+                                <!-- /.panel -->
+                       </div>
                     </div>
-                    <!-- /.panel -->
                 </div>
-		   </div>
             <!-- /.row -->
+            </div>
+        </div>
+          
+          
         </div>
         <!-- /#page-wrapper -->
 

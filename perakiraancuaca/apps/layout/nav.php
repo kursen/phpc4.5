@@ -46,8 +46,15 @@
 							
                         </li>
 						<li>
-							<a href="#" data-toggle="modal" data-target="#modalfaktor"><i class="fa fa-cloud-download fa-fw"></i> Load Faktor</a>
+							<a href="#" data-toggle="modal" data-target="#modalfaktor">
+                                <i class="fa fa-cloud-download fa-fw"></i> Load Testing
+                            </a>
 						</li>
+                        <li>
+                            <a href="testingresult.php">
+                                <i class="fa fa-list fa-fw"></i> Testing Results
+                            </a>
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Perkiraan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -57,9 +64,7 @@
                                 <li>
                                     <a href="testingform.php">Testing </a>
                                 </li>
-                                 <li>
-                                    <a href="#">Load Testing </a>
-                                </li>
+                                 
                                
                             </ul>
                             <!-- /.nav-second-level -->
