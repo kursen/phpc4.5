@@ -18,13 +18,13 @@ if($_FILES['datasetfile']['size']>0){
 		$action="";
 
 		//konfigurasi
-		$kolom_tanggal='';
-		$kolom_suhumax='';
-		$kolom_suhumin='';
-		$kolom_kelembapan='';
-		$kolom_arahangin=''
-		$kolom_kecepatanangin='';
-		$mulai_dari=;
+		$kolom_tanggal='A';
+		$kolom_suhumax='E';
+		$kolom_suhumin='F';
+		$kolom_kelembapan='H';
+		$kolom_arahangin='J';
+		$kolom_kecepatanangin='I';
+		$mulai_dari=1;
 
 		mysqli_query($connection,'truncate table testingtable');
 		for($row=$mulai_dari;$row<=$lastRow;$row++){
@@ -143,7 +143,7 @@ if($_FILES['datasetfile']['size']>0){
 		}
 		//print"</table>";
 		if($action){
-			print "<script>alert('Data berhasil di simpan');window.location.href='../Index.php';</script>";
+			print "<script>alert('Data berhasil di simpan');window.location.href='../testingresult.php';</script>";
 		}
 	}
 }else{

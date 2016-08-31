@@ -98,7 +98,7 @@
 									   <div class="form-group">
 										<label class="col-sm-4 control-label">Curah hujan</label>
 											<div class="col-sm-5">
-											  <input type="text" class="form-control" name="cuaca" readonly="true"/>
+											  <input type="text" class="form-control" id="curah_hujan" readonly="true"/>
 											</div>
 										</div>
 									 
@@ -142,10 +142,7 @@
 
 	
 	<script type="text/javascript">
-		/*$(document).ready(function(){
-			$('#dtpicker').datetimepicker({
-				format:'YYYY-MM-DD'
-			});
+		$(document).ready(function(){
 			
 			$('#frm-cuaca').bootstrapValidator({
 				live: 'enabled',
@@ -251,26 +248,21 @@
 					url: $form.attr('action'),
 					data: data,
 					dataType: 'json',
-					success: function (data) {
-							data=parseInt(data);
-							if(data==1){
-								alertify.success('Data berhasil dikirim, bloon :p');
-							}else{
-								alertify.error('Data gagal dikirim!');
-							}
+					success: function (datareturn) {
+							$('#curah_hujan').val(datareturn);
 							return false;
 						},
 						error: function (xhr,textStatus,errormessage) {
 							alertify.alert("Kesalahan! ","Error !!"+xhr.status+" "+textStatus+" "+"Tidak dapat mengirim data!");
 						},
 						complete: function () {
-							$('#frm-cuaca').bootstrapValidator('resetForm',true);
-							$('#btnsubmit').removeAttr('disabled');
+							//$('#frm-cuaca').bootstrapValidator('resetForm',true);
+							$('#btn-submit').removeAttr('disabled');
 							$('#frm-cuaca input').removeAttr("disabled");
 						}
 					});
 				});
-		});*/
+		});
 	</script>
 </body>
 
